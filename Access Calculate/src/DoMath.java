@@ -1,9 +1,11 @@
-
+/*James Lee
+ * September 6, 2017
+ * It is the runner for the calculate library
+ * It is used to test the methods in calculate.
+ */
 public class DoMath {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Calculate.square(5)
+		System.out.println(Calculate.square(5));
 	}
-	public static void
 }
