@@ -38,9 +38,24 @@ public class Calculate {
 		double discriminant = B * B - 4 * A * C;
 		return discriminant;
 	}
-	//converts mixed number into an improper fraction
-	public static double toImproperFrac(double A, double B, double C) {
-		double toImproperFrac = C * A + B;
-		return toImproperFrac = toImproperFrac +/ B;
+	//converts mixed number into an improper fraction A_b/c
+	public static String toImproperFrac(int A, int B, int C) {
+		int one = C * A + B;
+		String toImproperFrac = one +'/' C;
+		return toImproperFrac;
 	}
+	//Improper to mixed number
+	public static String toMixedNum(int A, int B) {
+		String toMixedNum = (A-(A%B))/B + '_' + A%B + '/' +B;
+		return toMixedNum;
+	}
+	//converts a binomial multiplication of form (Ax+B)(Cx+D) into a quadratic form)
+	public static String foil(int A, int B, int C, int D, String x) {
+		int one = A * C;
+		int two = A * D + C * B;
+		int three = B * D;
+		String foil = one +x + "^2" + '+' + two +x + '+' + three;
+		return foil;
+	}
+	
 }
