@@ -39,14 +39,17 @@ public class Calculate {
 		return discriminant;
 	}
 	//converts mixed number into an improper fraction A_b/c
-	public static String toImproperFrac(int A, int B, int C) {
-		int one = C * A + B;
-		String toImproperFrac = one +'/' C;
+	public static String toImproperFrac(int whole, int numerator, int denominator) {
+		int one = denominator * whole + numerator;
+		String toImproperFrac = one + "/" + denominator;
 		return toImproperFrac;
 	}
-	//Improper to mixed number
+	//Improper to mixed number (A/B)
 	public static String toMixedNum(int A, int B) {
-		String toMixedNum = (A-(A%B))/B + '_' + A%B + '/' +B;
+		int one = A % B;
+		int two = A - one;
+		int three = two / B;
+		String toMixedNum = three + "_" + one + '/' + B;
 		return toMixedNum;
 	}
 	//converts a binomial multiplication of form (Ax+B)(Cx+D) into a quadratic form)
@@ -56,6 +59,5 @@ public class Calculate {
 		int three = B * D;
 		String foil = one +x + "^2" + '+' + two +x + '+' + three;
 		return foil;
-	}
-	
+	}	
 }
