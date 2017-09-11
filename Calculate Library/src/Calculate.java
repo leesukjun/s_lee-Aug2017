@@ -59,5 +59,67 @@ public class Calculate {
 		int three = B * D;
 		String foil = one +x + "^2" + '+' + two +x + '+' + three;
 		return foil;
+	}
+	//Determine whether or not one integer is evenly divisible by another
+	public static boolean isDivisibleBy(int numerator, int denominator) {
+		if (numerator%denominator == 0) {
+			boolean isDivisibleBy = true;
+			return isDivisibleBy;
+		} else {
+			boolean isDivisibleBy = false;
+			return isDivisibleBy;
+		}
 	}	
-}
+	//absValue returns the absolute value of the number passed
+	public static double absValue(double A) {
+		if (A <= 0) {
+			double absValue = A;
+			return absValue;
+		} else {
+			double absValue = (-1 * A);
+			return absValue;
+		}
+			
+	}
+	//return the larger the values passed
+	public static double max(double A, double B) {
+		if (A >= B) {
+			double max = A;
+			return max;
+		} else {
+			double max = B;
+			return max;
+		}
+	}
+	//Accepts three doubles and returns a double
+	public static double max(double A, double B, double C) {
+		if (A >= B) {
+		}
+		if (A >= C) {
+			double max = A;
+			return max;
+		} else if (B >= C) {
+			double max = B;
+			return max;
+		} else {
+			double max = C;
+			return max;
+		}
+	}
+	//min returns the smaller of the values passed. The method accepts two integers and returns an int.
+	public static int min(int A, int B) {
+		if (A >= B) {
+			int min = B;
+			return min;
+		} else {
+			int min = A;
+			return min;
+		}
+	}
+	//round2 rounds a double correctly to 2 decimal places and returns a double
+	public static double round2(double A) {
+		double one = Math.round(A * 100);
+		double round2 = one / 100;
+		return round2;
+		}
+	}
