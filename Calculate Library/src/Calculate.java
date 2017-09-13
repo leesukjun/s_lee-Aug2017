@@ -121,7 +121,7 @@ public class Calculate {
 		double one = Math.round(A * 100);
 		double round2 = one / 100;
 		return round2;
-		}	
+	}	
 	//exponent accepts a double and an integer and returns a double
 	public static double exponent(double A, int B) {
 		int one = B;
@@ -131,4 +131,17 @@ public class Calculate {
 		}
 		return x;
 	}
+	//accepts an integer and return an integer
+	public static int factorial(int x) {
+		if (x < 0) {
+			throw new IllegalArgumentException("number must be >= 0");
+		}
+		int product = 1;
+		for (int i = 2; i <= x; i++) {
+			product = product * i;
+		}	
+		return product;
+	}
+	//isPrime determines whetehr or not an integer is prime
+	
 }
