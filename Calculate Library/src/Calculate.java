@@ -121,5 +121,14 @@ public class Calculate {
 		double one = Math.round(A * 100);
 		double round2 = one / 100;
 		return round2;
+		}	
+	//exponent accepts a double and an integer and returns a double
+	public static double exponent(double A, int B) {
+		int one = B;
+		double x = 1;
+			for (int i = 0; i < one; i++) {
+				x = x * A;
 		}
+		return x;
 	}
+}
