@@ -158,4 +158,35 @@ public class Calculate {
 		}
 		return true;
 	}
+	//gcf finds the greatest common factor of two integers
+	public static int gcf(int num1, int num2) {
+		int gcf = 1;
+		int smallNum = Calculate.min(num1, num2);
+		for (int i = 2; i < smallNum; i++) {
+			if (Calculate.isDivisibleBy(num1, i) && Calculate.isDivisibleBy(num2, i) == true) {
+				gcf = i;
+			}
+		}
+		return gcf;
+	}
+	//sqrt returns an approximation of the square root of the value passed, rounded to two decimal places
+	public static double sqrt(double square) {
+		if (square < 0) {
+			throw new IllegalArgumentException("number can't be negative.");
+		}
+		double squareRoot = 1;
+		while (squareRoot * squareRoot > (square + .1) || squareRoot * squareRoot < (square - .1)) {
+			while (squareRoot * squareRoot < square) {
+				squareRoot = squareRoot + .01;
+			}
+			if (squareRoot * squareRoot > square) {
+				squareRoot = squareRoot - .01;
+			}
+		}
+		return (Calculate.round2(squareRoot));
+	}
+	//quadForm uses the coefficients of a quadratic equation in standard form
+	//and uses quadratic formula to approximate the real roots, if any
+	public static String quadForm(int a, int b, int c) {
+	}
 }
