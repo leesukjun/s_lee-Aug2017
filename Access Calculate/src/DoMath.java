@@ -5,6 +5,6 @@
  */
 public class DoMath {
 	public static void main(String[] args) {
-		System.out.println(Calculate.round2(8.323252));
+		System.out.println(Calculate.round2(8.325252));
 	}
 }

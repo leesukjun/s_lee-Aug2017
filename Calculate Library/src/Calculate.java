@@ -118,8 +118,15 @@ public class Calculate {
 	}
 	//round2 rounds a double correctly to 2 decimal places and returns a double
 	public static double round2(double A) {
-		double one = Math.round(A * 100);
-		double round2 = one / 100;
+		double one = (int) (A * 100);
+		double round2 = A;
+		if (100*A-one >=0.5) {
+			round2 = (int) (A * 100 + 1);
+			round2 = round2/100;
+		} else {
+			round2 = (int) (A * 100);
+			round2 = round2/100;
+		}
 		return round2;
 	}	
 	//exponent accepts a double and an integer and returns a double
