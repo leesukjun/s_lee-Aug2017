@@ -149,6 +149,13 @@ public class Calculate {
 		}	
 		return product;
 	}
-	//isPrime determines whetehr or not an integer is prime
-	
+	//isPrime determines whether or not an integer is prime
+	public static boolean isPrime(int x) {
+		for (int i=2; i<x ; i++) {
+			if(Calculate.isDivisibleBy(x, i) == true) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
