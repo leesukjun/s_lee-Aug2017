@@ -210,10 +210,10 @@ public class Calculate {
 				dx = Calculate.round2((-b/(2*a)));
 					return "" + dx;
 			}else {
-				double firstroot = Calculate.round2(( - b + Calculate.sqrt(x))/(2*a));
+				double firstroot = Calculate.round2((-b + Calculate.sqrt(x))/(2*a));
 				double secondroot = Calculate.round2((-b - Calculate.sqrt(x))/(2*a)); 
 				if (firstroot < secondroot){
-					return "roots = " + firstroot + " " + secondroot;
+					return "roots = " + firstroot + " and " + secondroot;
 				}else {
 					return "roots = " + secondroot + " and " + firstroot;
 				}
