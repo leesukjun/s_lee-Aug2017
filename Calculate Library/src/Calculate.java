@@ -188,5 +188,26 @@ public class Calculate {
 	//quadForm uses the coefficients of a quadratic equation in standard form
 	//and uses quadratic formula to approximate the real roots, if any
 	public static String quadForm(int a, int b, int c) {
+		double ax = a;
+		double bx = b;
+		double cx = c;
+		double dx = 0;
+		double x = Calculate.discriminant(ax, bx, cx);
+		if (x < 0) {
+			return "no real roots";
+		}else {
+			if (x == 0) { 
+				dx = Calculate.round2((-b/(2*a)));
+					return "" + dx;
+				}else {
+					double firstroot = Calculate.round2(( - b + Calculate.sqrt(x))/(2*a));
+			        double secondroot = Calculate.round2((-b - Calculate.sqrt(x))/(2*a)); 
+			        if (firstroot < secondroot){
+			        	return "roots = " + firstroot + " " + secondroot;
+					}else {
+			        	return "roots = " + secondroot + " and " + firstroot;
+			        }
+				}
+		}
 	}
 }
