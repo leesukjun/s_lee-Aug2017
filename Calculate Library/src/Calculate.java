@@ -199,15 +199,15 @@ public class Calculate {
 			if (x == 0) { 
 				dx = Calculate.round2((-b/(2*a)));
 					return "" + dx;
+			}else {
+				double firstroot = Calculate.round2(( - b + Calculate.sqrt(x))/(2*a));
+				double secondroot = Calculate.round2((-b - Calculate.sqrt(x))/(2*a)); 
+				if (firstroot < secondroot){
+					return "roots = " + firstroot + " " + secondroot;
 				}else {
-					double firstroot = Calculate.round2(( - b + Calculate.sqrt(x))/(2*a));
-			        double secondroot = Calculate.round2((-b - Calculate.sqrt(x))/(2*a)); 
-			        if (firstroot < secondroot){
-			        	return "roots = " + firstroot + " " + secondroot;
-					}else {
-			        	return "roots = " + secondroot + " and " + firstroot;
-			        }
+					return "roots = " + secondroot + " and " + firstroot;
 				}
+			}
 		}
 	}
 }
