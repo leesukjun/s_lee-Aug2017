@@ -62,6 +62,9 @@ public class Calculate {
 	}
 	//Determine whether or not one integer is evenly divisible by another
 	public static boolean isDivisibleBy(int numerator, int denominator) {
+		if (numerator == 0 || denominator == 0) {
+			throw new IllegalArgumentException("numbers != 0");
+		}
 		if (numerator%denominator == 0) {
 			boolean isDivisibleBy = true;
 			return isDivisibleBy;
@@ -133,8 +136,12 @@ public class Calculate {
 	public static double exponent(double A, int B) {
 		int one = B;
 		double x = 1;
+		if (B < 0) {
+			throw new IllegalArgumentException("exponent must be > 0");
+		} else {
 			for (int i = 0; i < one; i++) {
 				x = x * A;
+		}
 		}
 		return x;
 	}
@@ -151,6 +158,9 @@ public class Calculate {
 	}
 	//isPrime determines whether or not an integer is prime
 	public static boolean isPrime(int x) {
+		if(x < 1) {
+			throw new IllegalArgumentException("exponent must be > 0");
+		}
 		for (int i=2; i<x ; i++) {
 			if(Calculate.isDivisibleBy(x, i) == true) {
 				return false;
