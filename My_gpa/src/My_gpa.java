@@ -1,4 +1,4 @@
-//James Lee
+//James (Sukjun) Lee 2nd Period
 //September 1, 2017
 //Making new methods
 public class My_gpa {
