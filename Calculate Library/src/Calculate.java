@@ -123,12 +123,21 @@ public class Calculate {
 	public static double round2(double A) {
 		double one = (int) (A * 100); //X100 and casting to int would give 100 times of the value with 2 decimals
 		double round2 = A;
-		if (100*A-one >=0.5) {//if greater than 0.5, it means the 3rd decimal would be rounded up
-			round2 = (int) (A * 100 + 1);
-			round2 = round2/100;
+		If (A>=0){
+			if (100*A-one >=0.5) {//if greater than 0.5, it means the 3rd decimal would be rounded up
+				round2 = (int) (A * 100 + 1);
+				round2 = round2/100;
+			} else {
+				round2 = (int) (A * 100);
+				round2 = round2/100;
 		} else {
-			round2 = (int) (A * 100);
-			round2 = round2/100;
+			if (100*A-one <=-0.5) {//if less than -0.5, it means the 3rd decimal would be rounded
+				round2 = (int) (A * 100 - 1);
+				round2 = round2/100;
+			} else {
+				round2 = (int) (A * 100);
+				round2 = round2/100;
+			}
 		}
 		return round2;
 	}	
@@ -190,7 +199,7 @@ public class Calculate {
 				squareRoot = squareRoot + .001;//add 0.01 when the squareRoot^2 is less than the input
 			}
 			while (squareRoot * squareRoot > square) {
-				squareRoot = squareRoot - .001;//subtract 0.01 when the squareRoot^2 is less than the input
+				squareRoot = squareRoot - .001;//subtract 0.01 when the squareRoot^2 is more than the input
 			}
 		}
 		return (Calculate.round2(squareRoot));
