@@ -45,11 +45,11 @@ public class Calculate {
 		return toImproperFrac;
 	}
 	//Improper to mixed number (A/B)
-	public static String toMixedNum(int A, int B) {
-		int one = A % B;//remainder = numerator for the mixed number
-		int two = A - one;
-		int three = two / B;//the whole number in the mixed number
-		String toMixedNum = three + "_" + one + '/' + B;
+	public static String toMixedNum(int numerator, int denominator) {
+		int one = numerator % denominator;//remainder = numerator for the mixed number
+		int two = numerator - one;
+		int three = two / denominator;//the whole number in the mixed number
+		String toMixedNum = three + "_" + one + '/' + denominator;
 		return toMixedNum;
 	}
 	//converts a binomial multiplication of form (Ax+B)(Cx+D) into a quadratic form)
@@ -74,48 +74,48 @@ public class Calculate {
 		}
 	}	
 	//absValue returns the absolute value of the number passed
-	public static double absValue(double A) {
-		if (A <= 0) {
-			double absValue = A;
+	public static double absValue(double operand) {
+		if (operand <= 0) {
+			double absValue = operand;
 			return absValue;
 		} else {
-			double absValue = (-1 * A);//convert negative value to positive
+			double absValue = (-1 * operand);//convert negative value to positive
 			return absValue;
 		}
 			
 	}
 	//return the larger the values passed
-	public static double max(double A, double B) {
-		if (A >= B) {
-			double max = A;
+	public static double max(double operandA, double operandB) {
+		if (operandA >= operandB) {
+			double max = operandA;
 			return max;
 		} else {
-			double max = B;
+			double max = operandB;
 			return max;
 		}
 	}
 	//Accepts three doubles and returns a double
-	public static double max(double A, double B, double C) {
-		if (A >= B && A >= C) { //If A is the greatest
-			double max = A;
+	public static double max(double operandA, double operandB, double operandC) {
+		if (operandA >= operandB && operandA >= operandC) { //If A is the greatest
+			double max = operandA;
 			return max;
 		} else {
-			if (B >= A && B>=C) { //If B is the greatest
-				double max = B;
+			if (operandB >= operandA && operandB>=operandC) { //If B is the greatest
+				double max = operandB;
 				return max;
 			}else {
-				double max = C; //If A and B are not the greatest, C has to be
+				double max = operandC; //If A and B are not the greatest, C has to be
 				return max;
 			}
 		}
 	}
 	//min returns the smaller of the values passed. The method accepts two integers and returns an int.
-	public static int min(int A, int B) {
-		if (A >= B) {
-			int min = B;
+	public static int min(int operandA, int operandB) {
+		if (operandA >= operandB) {
+			int min = operandB;
 			return min;
 		} else {
-			int min = A;
+			int min = operandA;
 			return min;
 		}
 	}
@@ -123,14 +123,15 @@ public class Calculate {
 	public static double round2(double A) {
 		double one = (int) (A * 100); //X100 and casting to int would give 100 times of the value with 2 decimals
 		double round2 = A;
-		If (A>=0){
+		if (A>=0){ //round up for positive number
 			if (100*A-one >=0.5) {//if greater than 0.5, it means the 3rd decimal would be rounded up
 				round2 = (int) (A * 100 + 1);
 				round2 = round2/100;
 			} else {
 				round2 = (int) (A * 100);
 				round2 = round2/100;
-		} else {
+			}
+		} else { //round up for negative number
 			if (100*A-one <=-0.5) {//if less than -0.5, it means the 3rd decimal would be rounded
 				round2 = (int) (A * 100 - 1);
 				round2 = round2/100;
@@ -142,36 +143,36 @@ public class Calculate {
 		return round2;
 	}	
 	//exponent accepts a double and an integer and returns a double
-	public static double exponent(double A, int B) {
-		int one = B;
+	public static double exponent(double base, int power) {
+		int one = power;
 		double x = 1;
-		if (B < 0) {
-			throw new IllegalArgumentException("exponent must be > 0");
+		if (power < 0) {
+			throw new IllegalArgumentException("The power of exponent must be > 0");
 		} else {
 			for (int i = 0; i < one; i++) {//multiplying the value as many times as the power
-				x = x * A;
+				x = x * base;
 		}
 		}
 		return x;
 	}
 	//accepts an integer and return an integer
-	public static int factorial(int x) {
-		if (x < 0) {
+	public static int factorial(int operand) {
+		if (operand < 0) {
 			throw new IllegalArgumentException("number must be >= 0");
 		}
 		int product = 1;
-		for (int i = 2; i <= x; i++) {
+		for (int i = 2; i <= operand; i++) {
 			product = product * i; //multiplying with incremented value by 1 until the given value
 		}	
 		return product;
 	}
 	//isPrime determines whether or not an integer is prime
-	public static boolean isPrime(int x) {
-		if(x < 1) {
+	public static boolean isPrime(int value) {
+		if(value < 1) {
 			throw new IllegalArgumentException("exponent must be > 0");
 		}
-		for (int i=2; i<x ; i++) {
-			if(Calculate.isDivisibleBy(x, i) == true) {//checking if the value is divisible by any value except 1
+		for (int i=2; i<value ; i++) {
+			if(Calculate.isDivisibleBy(value, i) == true) {//checking if the value is divisible by any value except 1
 				return false;
 			}
 		}
