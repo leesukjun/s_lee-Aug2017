@@ -13,6 +13,7 @@ public class ProcessingNumbers {
 		int inputNumber;
 		int evenSum = 0;
 		int maxEven = 11;//any odd number that correspond to if statement in line 43
+		
 		boolean firstEven = true;
 		if(min % 2 == 0) {
 			evenSum = min;
@@ -41,7 +42,6 @@ public class ProcessingNumbers {
 				min = inputNumber;
 			}
 		}		
-		
 	System.out.println("min: " + min + " max: " + max);
 	if (maxEven != 11 ) {
 		System.out.println("Sum of even numbers: " + evenSum + " Largest even number: " + maxEven);
@@ -49,6 +49,5 @@ public class ProcessingNumbers {
 		System.out.println("Sum of even numbers: " + evenSum + " Largest even number: Does not exist"
 				);
 	}
-	userInput.close();	
 	}
 }
