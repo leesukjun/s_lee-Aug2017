@@ -12,8 +12,8 @@ public class QuadraticClient {
 			int c = userInput.nextInt();
 			System.out.print (Quadratic.quadrDescriber(a, b, c));
 			System.out.println("Do you want to keep going? (Type \"quit\" to end)");
-			boolean answer = userInput.next.int();
-			if toUpperCase(answer) == QUIT {
+			String answer = userInput.nextLine();
+			if (toUpperCase(answer) == "QUIT") {
 				done = true;
 			}
 		}
