@@ -4,19 +4,19 @@
 import java.util.*;
 public class QuadraticClient {
 	public static void main(String args []) {
+		Scanner userInput = new Scanner(System.in);
 		boolean done = false;
 		while (!done) {
-			Scanner userInput = new Scanner(System.in);
 			int a = userInput.nextInt();
 			int b = userInput.nextInt();
 			int c = userInput.nextInt();
-			System.out.print (Quadratic.quadrDescriber(a, b, c));
-			System.out.println("Do you want to keep going? (Type \"quit\" to end)");
-			String answer = userInput.nextLine();
-			if (toUpperCase(answer) == "QUIT") {
+			System.out.println(Quadratic.quadrDescriber(a, b, c));
+			System.out.println("Do you want to keep going? (Type \"1\" to end)");
+			int answer = userInput.nextInt();
+			if (answer==1) {
 				done = true;
 			}
 		}
-		userInput.close();
+		System.out.println(("You are done"));
 	}
 }
