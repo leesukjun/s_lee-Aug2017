@@ -6,7 +6,6 @@ public class Quadratic {
 		double vertexY = a * vertexX * vertexX + b * vertexX + c;
 		String vertex = "<" + vertexX + "," + vertexY + ">";
 		double interceptY = c;
-		double interceptX = Quadratic.discriminant(a, b, c);
 		
 		String root = "";
 		double x = Quadratic.discriminant(a, b, c);
@@ -32,7 +31,7 @@ public class Quadratic {
 		} else {
 			mouthdirection = "open upward";
 		}
-		return "Description of the graph of:" \n "y = " + a + "x^2 +" + b + "x +" + c;
+		return "Description of the graph of:" + "\ny = " + a + "x^2 +" + b + "x +" + c + "\n\ndirection = " + mouthdirection + "\nAxis of Symmetry: " + axisofsym + "/nVertex: " + vertex + "\nx-intercept= " + root + "\ny-intercept: " + interceptY;
 	}
 	public static double discriminant(double A, double B, double C) {
 		double discriminant = B * B - 4 * A * C;//formula of discriminant is B^2-4AC
