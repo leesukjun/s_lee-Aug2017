@@ -1,4 +1,5 @@
-
+//James Lee
+//Warm up 10/12/2017
 public class Hourglass {
 	public static void main(String[] args) {
 		cap();
