@@ -1,4 +1,6 @@
 //James Lee
+//October 4, 2017
+//method that accepts the coefficient of quadratic formula and give description of it (ex. vertex, intercept)
 public class Quadratic {
 	public static String quadrDescriber (double a, double b, double c) {
 		double vertexX = -1 * b/(2 * a);

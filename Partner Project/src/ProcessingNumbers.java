@@ -45,7 +45,7 @@ public class ProcessingNumbers {
 	System.out.println("min: " + min + " max: " + max);
 	if (maxEven != 11 ) {
 		System.out.println("Sum of even numbers: " + evenSum + " Largest even number: " + maxEven);
-	} else {
+	} else {//if it stays as 11, it means there is no even number entered. If so, there is no maxEven
 		System.out.println("Sum of even numbers: " + evenSum + " Largest even number: Does not exist"
 				);
 	}

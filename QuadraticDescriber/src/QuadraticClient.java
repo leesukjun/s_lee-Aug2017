@@ -1,9 +1,10 @@
 /*James Lee
  * October 4, 2017
+ * Interact with user and, based on user's input, it gives the description of quadratic formula
  */
 import java.util.*;
 public class QuadraticClient {
-	public static void main(String args []) {
+	public static void main(String[] args) {
 		Scanner userInput = new Scanner(System.in);
 		boolean done = false;
 		while (!done) {
@@ -22,5 +23,6 @@ public class QuadraticClient {
 			}
 		}
 		System.out.println(("You are done"));
+		userInput.close();
 	}
 }
