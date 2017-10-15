@@ -5,24 +5,24 @@
 import java.util.*;
 public class QuadraticClient {
 	public static void main(String[] args) {
+		System.out.println("Welcome to the Quadratic Describer \nProvide values for coefficients a, b, and c");
 		Scanner userInput = new Scanner(System.in);
 		boolean done = false;
 		while (!done) {
-			System.out.println("type the coefficient of x^2");
-			int a = userInput.nextInt();
-			System.out.println("type the coefficient of x");
-			int b = userInput.nextInt();
-			System.out.println("type the value of constant");
-			int c = userInput.nextInt();
-			System.out.println(Quadratic.quadrDescriber(a, b, c));
-			System.out.println("Do you want to keep going? (Type \"quit\" to end)");
+			System.out.print("\na: ");
+			double a = userInput.nextDouble();
+			System.out.print("b: ");
+			double b = userInput.nextDouble();
+			System.out.print("c: ");
+			double c = userInput.nextDouble();
+			System.out.println("\n" + Quadratic.quadrDescriber(a, b, c));
+			System.out.println("\nDo you want to keep going? (Type \"quit\" to end)");
 			String answer = userInput.next();
 			String check = "quit";
-			if (answer.toLowerCase().equals(check)) {
+			if (answer.toLowerCase().contains(check)) {
 				done = true;
 			}
 		}
-		System.out.println(("You are done"));
 		userInput.close();
 	}
 }
