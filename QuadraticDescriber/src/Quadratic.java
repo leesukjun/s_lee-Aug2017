@@ -10,7 +10,7 @@ public class Quadratic {
 		double axisofsym = round2(vertexX);//axis of symmetry is essentially same as the x-coordinate of vertex
 		double vertexY = a * vertexX * vertexX + b * vertexX + c;//Substituting x of the equation as x-coordinate of vertex 
 		String vertex = "(" + round2(vertexX) + ", " + round2(vertexY) + ")";//rounds up the values of vertex
-		double interceptY = c;//in the standard form, only c value remains when x is 0
+		double interceptY = round2(c);//in the standard form, only c value remains when x is 0
 		
 		String root = "";
 		double x = Quadratic.discriminant(a, b, c);
@@ -37,6 +37,43 @@ public class Quadratic {
 			mouthdirection = "Up";
 		}
 		return "Description of the graph of:" + "\ny = " + a + " x^2 +" + b + " x +" + c + "\n\nOpens: " + mouthdirection + "\nAxis of Symmetry: " + axisofsym + "\nVertex: " + vertex + "\nx-intercept(s): " + root + "\ny-intercept: " + interceptY;
+	}
+	public static String quadrDescriber1 (double a, double b, double c) {
+			if (a == 0) {//if a is 0, it is a linear equation.
+				throw new IllegalArgumentException("The equation is not quadratic.");
+			}
+			double vertexX = -1 * b/(2 * a);
+			double axisofsym = (vertexX);//axis of symmetry is essentially same as the x-coordinate of vertex
+			double vertexY = a * vertexX * vertexX + b * vertexX + c;//Substituting x of the equation as x-coordinate of vertex 
+			String vertex = "(" + vertexX + ", " + vertexY + ")";//rounds up the values of vertex
+			double interceptY = c;//in the standard form, only c value remains when x is 0
+			
+			String root = "";
+			double x = Quadratic.discriminant(a, b, c);
+			if (x < 0) {//if discriminant is less than 0, it has no real root
+				root = "None";
+			}else {
+				if (x == 0) {//if discriminant = 0, it has only one real root
+					double dx =  (-b/(2*a));
+					root = "" + dx;
+				}else {
+					double firstroot =  ((-b + Quadratic.sqrt(x))/(2*a));//using quadratic formula (+ version)
+					double secondroot =  ((-b - Quadratic.sqrt(x))/(2*a));//using quadratic formula (- version)
+					if (firstroot < secondroot){
+						root = firstroot + " and " + secondroot;
+					}else {
+						root = secondroot + " and " + firstroot;
+					}
+				}
+			}
+			String mouthdirection = "";//if the graph opens upward or downward
+			if (a < 0){
+				mouthdirection = "Down";
+			} else {
+				mouthdirection = "Up";
+			}
+			return "Description of the graph of:" + "\ny = " + a + " x^2 +" + b + " x +" + c + "\n\nOpens: " + mouthdirection + "\nAxis of Symmetry: " + axisofsym + "\nVertex: " + vertex + "\nx-intercept(s): " + root + "\ny-intercept: " + interceptY;
+
 	}
 	public static double discriminant(double A, double B, double C) {
 		double discriminant = B * B - 4 * A * C;//formula of discriminant is B^2-4AC
