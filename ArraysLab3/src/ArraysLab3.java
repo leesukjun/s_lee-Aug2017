@@ -35,7 +35,7 @@ public class ArraysLab3 {
 		for (int i = 0; i < n; i++) {
 			if(i != idx) {
 				removedArray[count] = arr[i];
-				count++;
+				count++;//increment only if when the code fill in the value in the array
 			}
 		}
 	return(removedArray);
