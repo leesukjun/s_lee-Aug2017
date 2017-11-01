@@ -58,7 +58,7 @@ public class Calculate {
 		int one = A * C;//coefficient of x^2
 		int two = A * D + C * B;//coefficient of x
 		int three = B * D;//constant value
-		String foil = one +x + "^2" + "+" + two +x + "+" + three;
+		String foil = one +x + "^2" + " + " + two +x + " + " + three;
 		return foil;
 	}
 	//Determine whether or not one integer is evenly divisible by another
@@ -209,14 +209,14 @@ public class Calculate {
 		}else {
 			if (x == 0) {//if discriminant = 0, it has only one real root
 				dx = Calculate.round2((-b/(2*a)));
-					return "root = " + dx;
+					return "" + dx;
 			}else {
 				double firstroot = Calculate.round2((-b + Calculate.sqrt(x))/(2*a));//using quadratic formula (+ version)
 				double secondroot = Calculate.round2((-b - Calculate.sqrt(x))/(2*a));//using quadratic formula (- version)
 				if (firstroot < secondroot){
-					return "roots = " + firstroot + " and " + secondroot;
+					return firstroot + " and " + secondroot;
 				}else {
-					return "roots = " + secondroot + " and " + firstroot;
+					return secondroot + " and " + firstroot;
 				}
 			}
 		}
