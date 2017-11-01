@@ -2,8 +2,8 @@
  * 31 October 2017
  * Mini Lab (done individually)
  * 
- * When we set one variable to equal another and then change the original variable to something else, int and Strings stay the same, but array is changed. 
- * After using the method, all values were updated according to what have been changed ion the method changeMe
+ * When we set one variable to equal another (called b) and then change the original variable to something else, int and String of b stay the same, but array of b is changed. 
+ * After using the method with inputs of original values, all original values were changed (or updated according to what have been changed from the method changeMe)
 */
 
 import java.util.Arrays;
@@ -16,17 +16,17 @@ public class LotsOfCopies {
 		int num2 = num;
 		String strMain2 = strMain;
 		int [] arrMain2 = arrMain;
-	
+		
 		num = 6;
 		strMain = "APCS2";
 		for(int i = 0; i < arrMain.length; i++) {
 			arrMain[i] = i;
 		//changing the original value
 		}
-		System.out.println(num + " " + strMain + " " + Arrays.toString(arrMain));//Old Values
-		System.out.println(num2 + " " + strMain2 + " " + Arrays.toString(arrMain2));//New Values
+		System.out.println(num + " " + strMain + " " + Arrays.toString(arrMain));//"a" Values (original)
+		System.out.println(num2 + " " + strMain2 + " " + Arrays.toString(arrMain2));//"b" Values
 		changeMe(num, strMain, arrMain);//Part 1
-		System.out.println(num + " " + strMain + " " + Arrays.toString(arrMain));//Old Values after using the method changeMe
+		System.out.println(num + " " + strMain + " " + Arrays.toString(arrMain));//Original Values after using the method changeMe
 	}
 	public static void changeMe (int x, String str, int [] arr) {
 		x--;
