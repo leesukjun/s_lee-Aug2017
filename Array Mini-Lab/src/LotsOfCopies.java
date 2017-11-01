@@ -1,3 +1,11 @@
+/*James Lee
+ * 31 October 2017
+ * Mini Lab (done individually)
+ * 
+ * When we set one variable to equal another and then change the original variable to something else, int and Strings stay the same, but array is changed. 
+ * After using the method, all values were updated according to what have been changed ion the method changeMe
+*/
+
 import java.util.Arrays;
 public class LotsOfCopies {
 	public static void main (String [] args){
@@ -13,6 +21,7 @@ public class LotsOfCopies {
 		strMain = "APCS2";
 		for(int i = 0; i < arrMain.length; i++) {
 			arrMain[i] = i;
+		//changing the original value
 		}
 		System.out.println(num + " " + strMain + " " + Arrays.toString(arrMain));//Old Values
 		System.out.println(num2 + " " + strMain2 + " " + Arrays.toString(arrMain2));//New Values

@@ -1,3 +1,7 @@
+/* James Lee
+ * 31 October 2017
+ * ArrayLab3
+ */
 import java.util.Arrays;
 public class ArraysLab3 {
 	public static int[] sum (int[] arr1, int[] arr2) {
@@ -21,17 +25,17 @@ public class ArraysLab3 {
 				appendArray[i] = arr[i];
 			}
 		}
-		return(appendArray);
+		return (appendArray);
 	}
 	public static int[] remove(int[] arr, int idx){
-		assert (arr.length >= 2) && (idx<=arr.length);//make sure idx is within the length of the array
+		assert (arr.length >= 2) && (idx<arr.length);//make sure idx is within the length of the array
 		int n = arr.length;
 		int [] removedArray = new int[n-1];
-		int newIndex = 0;
+		int count = 0;
 		for (int i = 0; i < n; i++) {
 			if(i != idx) {
-				removedArray[newIndex] = arr[i];
-				newIndex++;
+				removedArray[count] = arr[i];
+				count++;
 			}
 		}
 	return(removedArray);
@@ -44,7 +48,7 @@ public class ArraysLab3 {
 				evenSum += arr[i];
 			}
 		}
-		return(evenSum);
+		return (evenSum);
 	}
 	public static void rotateRight(int[] arr){
 		assert (arr.length > 0);
@@ -57,19 +61,19 @@ public class ArraysLab3 {
 		}
 	}
 	public static void main(String[] args) {
-		int[] a1 = {5, 10, 15, 20, 25, 30, 35, 40, 0, 0,  -10};
-		int[] a2 = {7, 14, 21, 28, 35, 42, 49, 56, 0, 15, -15};
+		int[] a1 = {5, 10, 15, 20, 25, 30, 35, 40};
+		int[] a2 = {7, 14, 21, 28, 35, 42, 49, 56};
 		int [] sumArr = sum(a1, a2);
 		int appendNum = 200;
 		int [] appendArr = append(a1, appendNum);
 		int removeIdx = 5;
 		int [] removeArr = remove(a2, removeIdx);
-		int  sumOfEvens = sumEven(appendArr);
+		int  sumEvens = sumEven(appendArr);
 		rotateRight(a1);
 		System.out.println("sumArr: " + Arrays.toString(sumArr));
 		System.out.println("appendArr: " + Arrays.toString(appendArr));
 		System.out.println("removeArr: " + Arrays.toString(removeArr));
-		System.out.println("sumOfEvens: " + sumOfEvens);
+		System.out.println("sumOfEvens: " + sumEvens);
 		System.out.println("a1: " + Arrays.toString(a1));
 	}
 }
