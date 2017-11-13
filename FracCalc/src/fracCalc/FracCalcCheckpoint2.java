@@ -70,7 +70,5 @@ public class FracCalcCheckpoint2 {
         //Return a description of the second operand
         return "whole:" + whole2 + " numerator:" + numerator2 + " denominator:" + denominator2;
     }
-
     // TODO: Fill in the space below with any helper methods that you think you will need
-    
 }
