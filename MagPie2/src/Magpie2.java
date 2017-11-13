@@ -1,4 +1,5 @@
-
+//James Lee
+//November (?) 2017
 public class Magpie2 {
 
 	//Get a default greeting and return a greeting	
