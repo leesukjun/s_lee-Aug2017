@@ -4,7 +4,7 @@
 // that the user inputs, and calculates and returns the result. 
 package fracCalc;
 import java.util.*;
-public class FracCalc {
+public class FracCalcCheckpoint3 {
 
     public static void main(String[] args) {
         // Read the input from the user and call produceAnswer with an equation
@@ -14,46 +14,9 @@ public class FracCalc {
         	System.out.println("Enter fraction string.");
     		input = userInput.nextLine();
     		if (!input.toLowerCase().contains("quit")) {
-    			System.out.println(produceAnswerMK1(input));
+    			System.out.println(produceAnswer(input));
     		}
     	}
-    }
-    public static String produceAnswerMK1 (String input) {
-    	int how1Many = 0;
-    	String vol1 = "";
-    	String vol2 = "";
-    	for (int i = 0; i < input.length(); i++) {
-    		if (input.substring(i, i+1).equals("+") || input.substring(i, i+1).equals("-") || input.substring(i, i+1).equals("*") || input.substring(i, i+1).equals("/")) {
-    			how1Many++;
-    		}
-    	}
-    	if (how1Many >= 2) {
-    		vol1 = input.substring(0, ordinalIndexOf(input," ",3));
-    		vol2 = input.substring(ordinalIndexOf(input, " ",3));
-    	} else {
-    		vol1 = input;
-    	}
-    	String firstAnswer = produceAnswer(vol1);
-    	String newString = firstAnswer + vol2;
-    	return newString;
-	}	
-    public static String produceAnswerMK2 (String input) {
-    	String answer = input;
-    	boolean done = false;
-    	while (!done) {
-    		if (input.contains(" ")) {
-    			answer = produceAnswerMK1(answer);
-    		} else {
-    			done = true;
-    		}
-    	}
-    	return answer;
-    }
-    public static int ordinalIndexOf(String str, String substr, int n) {
-        int pos = str.indexOf(substr);
-        while (--n > 0 && pos != -1)
-            pos = str.indexOf(substr, pos + 1);
-        return pos;
     }
     // Calculate and return the answer to the expression that the user inputs.
     public static String produceAnswer(String input) {
@@ -62,13 +25,12 @@ public class FracCalc {
         String firstOperand = input.substring(0, input.indexOf(" "));
         String operator = input.substring((input.indexOf(" ")+ 1), (input.indexOf(" ")+ 2)); 
         String secondOperand = input.substring(input.lastIndexOf(" ") + 1);
-        
+
+
         // Create integer arrays for the parts of each operand.
         int firstOperandArray [] = parseOperand(firstOperand);
         int secondOperandArray [] = parseOperand(secondOperand);
-        if (firstOperandArray [2] == 0 || secondOperandArray [2] == 0) {
-        	throw new IllegalArgumentException("Cannot divide by zero.");
-        }
+
 
         // Create a third integer array to hold the values after the operation method is called.
         int [] combinedOperandArray= new int [3];
@@ -91,7 +53,7 @@ public class FracCalc {
         				combinedOperandArray = divideFrac( firstOperandArray, secondOperandArray);
         			}
         			else {
-        				throw new IllegalArgumentException("Input is in an invalid format.");
+        				throw new IllegalArgumentException("Use correct operator");
         			}
         		}      		
         	}
