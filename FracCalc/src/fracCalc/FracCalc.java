@@ -14,7 +14,7 @@ public class FracCalc {
         	System.out.println("Enter fraction string.");
     		input = userInput.nextLine();
     		if (!input.toLowerCase().contains("quit")) {
-    			System.out.println(produceAnswerMK1(input));
+    			System.out.println(produceAnswerMK2(input));
     		}
     	}
     }
@@ -23,7 +23,7 @@ public class FracCalc {
     	String vol1 = "";
     	String vol2 = "";
     	for (int i = 0; i < input.length(); i++) {
-    		if (input.substring(i, i+1).equals("+") || input.substring(i, i+1).equals("-") || input.substring(i, i+1).equals("*") || input.substring(i, i+1).equals("/")) {
+    		if (input.substring(i, i+1).equals("+")) {
     			how1Many++;
     		}
     	}
@@ -41,7 +41,7 @@ public class FracCalc {
     	String answer = input;
     	boolean done = false;
     	while (!done) {
-    		if (input.contains(" ")) {
+    		if (answer.contains(" ")) {
     			answer = produceAnswerMK1(answer);
     		} else {
     			done = true;
