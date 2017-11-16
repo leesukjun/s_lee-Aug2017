@@ -1,5 +1,4 @@
-
-// James Lee 11/13/2017
+// James Lee 11/13-16/2017
 // Takes a mathematical expression 
 //(involving fractions and mixed numbers)
 // that the user inputs, and calculates and returns the result. 
@@ -39,24 +38,24 @@ public class FracCalc {
     }
     public static String produceAnswerMK1 (String input) {
     	String answer = input;
-    	int how1Many = 0;
+    	int howMany = 0;
     	String vol1 = "";
     	String vol2 = "";
     	for (int i = 0; i < answer.length()-1; i++) {
     		if (answer.substring(i, i+2).equals("+ ")) {
-    			how1Many++;
+    			howMany++;
     		} 
     		if (answer.substring(i, i+2).equals("- ")) {
-    			how1Many++;
+    			howMany++;
     		} 
     		if (answer.substring(i, i+2).equals("* ")) {
-    			how1Many++;
+    			howMany++;
     		} 
     		if (answer.substring(i, i+2).equals("/ ")) {
-    			how1Many++;
+    			howMany++;
     		} 
     	}
-    	if (how1Many >= 2) {
+    	if (howMany >= 2) {
     		vol1 = answer.substring(0, ordinalIndexOf(answer," ",3));
     		vol2 = answer.substring(ordinalIndexOf(answer, " ",3));
     	} else {
@@ -113,7 +112,6 @@ public class FracCalc {
         if (combinedOperandArray[1] != 0 && combinedOperandArray[2] != 0) {
         	reduceFrac(combinedOperandArray);	
         }
-        
         if (combinedOperandArray[0] == 0) {
         	if (combinedOperandArray[1] == 0 || combinedOperandArray[2] == 0) {
         		// Whole number = 0 and either numerator or denominator = 0.
@@ -218,7 +216,6 @@ public class FracCalc {
     		combinedOperandArray[0] = combinedOperandArray[1]/combinedOperandArray[2];
     		combinedOperandArray[1] = combinedOperandArray[1]%combinedOperandArray[2];
     	}
-    	
     	// Test if the numerator of the fraction portion is divisible by the denominator.
     	// If so, divide and add the result to the whole number.
     	if(combinedOperandArray[1]%combinedOperandArray[2] == 0) {
@@ -228,24 +225,24 @@ public class FracCalc {
     	}
     		// If the numerator is not divisible by the denominator,
     		// find the gcf of the two numbers.
-    		else {
-    			gcf = gcf(combinedOperandArray[1], combinedOperandArray[2]);
-    				// Test if the gcf is positive.
-    				if (combinedOperandArray[0] > 0) {
+    	else {
+    		gcf = gcf(combinedOperandArray[1], combinedOperandArray[2]);
+    			// Test if the gcf is positive.
+    			if (combinedOperandArray[0] > 0) {
     				combinedOperandArray[0] += combinedOperandArray[1]/combinedOperandArray[2];
     				combinedOperandArray[1] = combinedOperandArray[1]%combinedOperandArray[2];
-    				}
-    				else {
-    					combinedOperandArray[0] -= combinedOperandArray[1]/combinedOperandArray[2];
-        				combinedOperandArray[1] = combinedOperandArray[1]%combinedOperandArray[2];
-    				}
-    					// Divide the numerator and denominator by the gcf.
-    					combinedOperandArray[1] /= gcf;
-    					combinedOperandArray[2] /= gcf;
-    		}
+    			}
+    			else {
+    				combinedOperandArray[0] -= combinedOperandArray[1]/combinedOperandArray[2];
+        			combinedOperandArray[1] = combinedOperandArray[1]%combinedOperandArray[2];
+    			}
+    				// Divide the numerator and denominator by the gcf.
+    				combinedOperandArray[1] /= gcf;
+    				combinedOperandArray[2] /= gcf;
+    	}
     	// Test if either the numerator or denominator is negative.
     	if (combinedOperandArray[1] < 0 || combinedOperandArray[2] < 0) {
-    		// If the numerator is positve, there is no whole number,
+    		// If the numerator is positive, there is no whole number,
     		// and the denominator is negative, make the denominator
     		// positive and the numerator negative.
     		if(combinedOperandArray[0] == 0 && combinedOperandArray[1] > 0) {
@@ -272,7 +269,6 @@ public class FracCalc {
     public static int gcf(int numerator, int denominator) {
     	// Set the initial value of gcf to 1 (the lowest possible gcf.
     	int gcf = 1;
-    	
     	// Declare a variable for the amount of times the loop will run.
     	// Set it to whichever number is larger.
 		int count;
