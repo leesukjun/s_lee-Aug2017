@@ -18,7 +18,7 @@ public class FracCalc {
     		}
     	}
     }
-    public static String produceAnswer (String input) {
+    public static String produceAnswer(String input) {//main producer
     	String answer = input;
     	boolean done = false;
     	while (!done) {
@@ -30,6 +30,7 @@ public class FracCalc {
     	}
     	return answer;
     }
+    //method that detects the index of the nth occurring character 
     public static int ordinalIndexOf(String str, String substr, int n) {
         int position = str.indexOf(substr);
         while (--n > 0 && position != -1)
@@ -70,7 +71,7 @@ public class FracCalc {
     	
     	// Parse input into firstOperand, operator, and secondOperand.
         String firstOperand = input.substring(0, input.indexOf(" "));
-        String operator = input.substring((input.indexOf(" ")+ 1), (input.indexOf(" ")+ 2)); 
+        String operator = input.substring((input.indexOf(" ")), (input.indexOf(" ")+ 3)); 
         String secondOperand = input.substring(input.lastIndexOf(" ") + 1);
         
         // Create integer arrays for the parts of each operand.
@@ -84,22 +85,21 @@ public class FracCalc {
         
         // Create a third integer array to hold the values after the operation method is called.
         int [] combinedOperandArray= new int [3];
-        
         // Test to find out what operator is being used, call different operation methods depending on operator
         // Set result to the value returned from the operation method
-        if (operator.equals("+")) {
+        if (operator.equals(" + ")) {
         	 combinedOperandArray = addFrac(firstOperandArray, secondOperandArray);
         }
         else {
-        	if (operator.equals("-")) {
+        	if (operator.equals(" - ")) {
         		combinedOperandArray = subtractFrac(firstOperandArray, secondOperandArray);
         	}
         	else {
-        		if (operator.equals("*")) {
+        		if (operator.equals(" * ")) {
         			combinedOperandArray = multiplyFrac(firstOperandArray, secondOperandArray);
         		}
         		else {
-        			if (operator.equals("/")) {//obviously will be division.
+        			if (operator.equals(" / ")) {
         				combinedOperandArray = divideFrac( firstOperandArray, secondOperandArray);
         			}
         			else {
@@ -124,23 +124,18 @@ public class FracCalc {
     	int whole = 0;
         int numerator = 0;
         int denominator = 1;
-        
-        // Test if there is a whole number.
-        if (operand.indexOf("_") > 0) {
+        if (operand.indexOf("_") > 0) {// Test if there is a whole number.
         	whole = Integer.valueOf(operand.substring(0, operand.indexOf("_")));
         }
-        
-        	// Test if there is a fraction.
-        	if (operand.indexOf("/") < 0) {
+        	if (operand.indexOf("/") < 0) {// Test if there is a fraction.
         		whole = Integer.valueOf(operand);
         	}
         	else {
         	numerator = Integer.valueOf(operand.substring(operand.indexOf("_") + 1, operand.indexOf("/")));
         	denominator = Integer.valueOf(operand.substring(operand.indexOf("/") + 1));
         	}
-
         // Create and return an array with the whole, numerator and denominator of the operand.
-        int operandArray [] = new int [] { whole, numerator, denominator};
+        int operandArray [] = new int [] {whole, numerator, denominator};
         return operandArray;
     }
     // Convert a mixed number into an improper fraction.
@@ -148,8 +143,7 @@ public class FracCalc {
     public static int[] toImproperFrac(int whole, int numerator, int denominator) {
     	if (whole >= 0){
     	numerator = ((whole * denominator) + numerator);
-    	}
-    	else {
+    	} else {
     		whole *= -1;
     		numerator = ((whole * denominator) + numerator);
     		numerator *= -1;
@@ -208,7 +202,6 @@ public class FracCalc {
     	gcf = gcf(returnArray[1], returnArray[2]);
     	returnArray[1] /= gcf;
     	returnArray[2] /= gcf;
-
     	return returnArray;
     }
     // Find the gcf of two numbers (numerator and denominator of the fractional part of the mixed number).
@@ -221,8 +214,7 @@ public class FracCalc {
 		int count;
     	if (numerator == denominator || numerator > denominator ) {
     		count = numerator;
-    	}
-    	else {
+    	} else {
     		count = denominator;
     	}
 		for(int i = 1; i < Math.abs(count); i++) {
