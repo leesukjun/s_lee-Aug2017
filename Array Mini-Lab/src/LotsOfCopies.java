@@ -12,6 +12,7 @@ public class LotsOfCopies {
 		int num = 7;
 		String strMain = "APCS";
 		int [] arrMain = {1, 2, 3, 4, 5};
+		System.out.println(strMain.substring(2,4));
 		//new variables
 		int num2 = num;
 		String strMain2 = strMain;
@@ -27,6 +28,10 @@ public class LotsOfCopies {
 		System.out.println(num2 + " " + strMain2 + " " + Arrays.toString(arrMain2));//"b" Values
 		changeMe(num, strMain, arrMain);//Part 1
 		System.out.println(num + " " + strMain + " " + Arrays.toString(arrMain));//Original Values after using the method changeMe
+	}
+	private static char[] indexOf(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	public static void changeMe (int x, String str, int [] arr) {
 		x--;

@@ -1,3 +1,4 @@
+
 // James Lee 11/13/2017
 // Takes a mathematical expression 
 //(involving fractions and mixed numbers)
@@ -14,30 +15,40 @@ public class FracCalc {
         	System.out.println("Enter fraction string.");
     		input = userInput.nextLine();
     		if (!input.toLowerCase().contains("quit")) {
-    			System.out.println(produceAnswerMK2(input));
+    			System.out.println(produceAnswer(input));
     		}
     	}
     }
     public static String produceAnswerMK1 (String input) {
+    	String answer = input;
     	int how1Many = 0;
     	String vol1 = "";
     	String vol2 = "";
-    	for (int i = 0; i < input.length(); i++) {
-    		if (input.substring(i, i+1).equals("+")) {
+    	for (int i = 0; i < answer.length()-1; i++) {
+    		if (answer.substring(i, i+2).equals("+ ")) {
     			how1Many++;
-    		}
+    		} 
+    		if (answer.substring(i, i+2).equals("- ")) {
+    			how1Many++;
+    		} 
+    		if (answer.substring(i, i+2).equals("* ")) {
+    			how1Many++;
+    		} 
+    		if (answer.substring(i, i+2).equals("/ ")) {
+    			how1Many++;
+    		} 
     	}
     	if (how1Many >= 2) {
-    		vol1 = input.substring(0, ordinalIndexOf(input," ",3));
-    		vol2 = input.substring(ordinalIndexOf(input, " ",3));
+    		vol1 = answer.substring(0, ordinalIndexOf(answer," ",3));
+    		vol2 = answer.substring(ordinalIndexOf(answer, " ",3));
     	} else {
     		vol1 = input;
     	}
-    	String firstAnswer = produceAnswer(vol1);
+    	String firstAnswer = produceAnswerMK2(vol1);
     	String newString = firstAnswer + vol2;
     	return newString;
 	}	
-    public static String produceAnswerMK2 (String input) {
+    public static String produceAnswer (String input) {
     	String answer = input;
     	boolean done = false;
     	while (!done) {
@@ -56,7 +67,7 @@ public class FracCalc {
         return pos;
     }
     // Calculate and return the answer to the expression that the user inputs.
-    public static String produceAnswer(String input) {
+    public static String produceAnswerMK2(String input) {
     	
     	// Parse input into firstOperand, operator, and secondOperand.
         String firstOperand = input.substring(0, input.indexOf(" "));
