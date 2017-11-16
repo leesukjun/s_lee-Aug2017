@@ -108,7 +108,7 @@ public class FracCalc {
         		}      		
         	}
         }
-        reduceFrac(combinedOperandArray);
+        combinedOperandArray=reduceFrac(combinedOperandArray);
         if (combinedOperandArray[1]==0) {
         	return "" + combinedOperandArray[0];
         }
@@ -192,64 +192,7 @@ public class FracCalc {
     	returnArray[2] = firstOperandArray[2] * secondOperandArray[1];
     	return returnArray;
     }
-    // Reduce an improper fraction or mixed number to its simplest form.
-    public static int [] reduceFrac(int [] combinedOperandArray) {
-    	int gcf;
-    	// Test if the combined operand is a mixed number.
-    	// If it is not, convert it to one.
-    	if (combinedOperandArray[0] == 0) {
-    		combinedOperandArray[0] = combinedOperandArray[1]/combinedOperandArray[2];
-    		combinedOperandArray[1] = combinedOperandArray[1]%combinedOperandArray[2];
-    	}
-    	// Test if the numerator of the fraction portion is divisible by the denominator.
-    	// If so, divide and add the result to the whole number.
-    	if(combinedOperandArray[1]%combinedOperandArray[2] == 0) {
-    		combinedOperandArray[0] += combinedOperandArray[1]/combinedOperandArray[2];
-    		combinedOperandArray[1] = 0;
-    		combinedOperandArray[2] = 0;
-    	}
-    		// If the numerator is not divisible by the denominator,
-    		// find the gcf of the two numbers.
-    	else {
-    		gcf = gcf(combinedOperandArray[1], combinedOperandArray[2]);
-    			// Test if the gcf is positive.
-    			if (combinedOperandArray[0] > 0) {
-    				combinedOperandArray[0] += combinedOperandArray[1]/combinedOperandArray[2];
-    				combinedOperandArray[1] = combinedOperandArray[1]%combinedOperandArray[2];
-    			}
-    			else {
-    				combinedOperandArray[0] -= combinedOperandArray[1]/combinedOperandArray[2];
-        			combinedOperandArray[1] = combinedOperandArray[1]%combinedOperandArray[2];
-    			}
-    				// Divide the numerator and denominator by the gcf.
-    				combinedOperandArray[1] /= gcf;
-    				combinedOperandArray[2] /= gcf;
-    	}
-    	// Test if either the numerator or denominator is negative.
-    	if (combinedOperandArray[1] < 0 || combinedOperandArray[2] < 0) {
-    		// If the numerator is positive, there is no whole number,
-    		// and the denominator is negative, make the denominator
-    		// positive and the numerator negative.
-    		if(combinedOperandArray[0] == 0 && combinedOperandArray[1] > 0) {
-				combinedOperandArray[2] *= -1;
-				combinedOperandArray[1] *= -1;
-    		}
-    		else{
-    			// If there is no whole number, and both the numerator
-    			// and denominator are negative, make both positive.
-    			if (combinedOperandArray[0] < 0 || ((combinedOperandArray[1] < 0 && combinedOperandArray[2] < 0))) {
-    				if (combinedOperandArray[1] < 0 ) {
-    					combinedOperandArray[1] *= -1;
-    				}
-    				if (combinedOperandArray[2] < 0 ) {
-    				combinedOperandArray[2] *= -1;
-    				}
-    			}
-    		}
-    	}
-    	return combinedOperandArray;
-    }
-    public static int [] reduceFrac2(int [] combinedOperandArray) {//needs to be fixed
+    public static int [] reduceFrac(int [] combinedOperandArray) {//needs to be fixed
     	int gcf;
     	int returnArray[]= combinedOperandArray;
     	returnArray = toImproperFrac(returnArray[0], returnArray[1], returnArray[2]);
@@ -259,7 +202,7 @@ public class FracCalc {
     	}	
     	returnArray[0] += returnArray[1]/returnArray[2];
     	returnArray[1] = returnArray[1]%returnArray[2];
-    	if(returnArray[1]<0) {
+    	if(returnArray[0]!=0 && returnArray[1]<0) {
     		returnArray[1] *= -1;	
     	}
     	gcf = gcf(returnArray[1], returnArray[2]);
