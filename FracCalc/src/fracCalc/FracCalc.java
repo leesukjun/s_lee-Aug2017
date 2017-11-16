@@ -108,29 +108,14 @@ public class FracCalc {
         		}      		
         	}
         }
-        // If the the result is not a whole number, reduce it.
-        if (combinedOperandArray[1] != 0 && combinedOperandArray[2] != 0) {
-        	reduceFrac(combinedOperandArray);	
+        reduceFrac(combinedOperandArray);
+        if (combinedOperandArray[1]==0) {
+        	return "" + combinedOperandArray[0];
         }
-        if (combinedOperandArray[0] == 0) {
-        	if (combinedOperandArray[1] == 0 || combinedOperandArray[2] == 0) {
-        		// Whole number = 0 and either numerator or denominator = 0.
-        		return "0";
-        	}
-        	else {
-            	// Whole number = 0.
-        		return "" + combinedOperandArray[1] + "/" + combinedOperandArray[2];
-        	}
-        }
-        else {
-        	if (combinedOperandArray[1] == 0 || combinedOperandArray[2] == 0) {
-        		// Either numerator or denominator = 0.
-        		return "" + combinedOperandArray[0];
-        	}
-        	else { 
-        		// No part of the answer = 0.
-        		return ""  + combinedOperandArray[0] + "_" + combinedOperandArray[1] + "/" + combinedOperandArray[2];
-        	}
+        if (combinedOperandArray[0]==0) {
+        	return "" + combinedOperandArray[1] + "/" + combinedOperandArray[2];
+        } else {
+    		return ""  + combinedOperandArray[0] + "_" + combinedOperandArray[1] + "/" + combinedOperandArray[2];
         }
     }
     // Parse an operand into three parts: whole, numerator, and denominator.
@@ -263,6 +248,25 @@ public class FracCalc {
     		}
     	}
     	return combinedOperandArray;
+    }
+    public static int [] reduceFrac2(int [] combinedOperandArray) {//needs to be fixed
+    	int gcf;
+    	int returnArray[]= combinedOperandArray;
+    	returnArray = toImproperFrac(returnArray[0], returnArray[1], returnArray[2]);
+    	if (returnArray[2]<0) {//make sure the denominator is positive
+    		returnArray[2] *= -1;
+    		returnArray[1] *= -1;
+    	}	
+    	returnArray[0] += returnArray[1]/returnArray[2];
+    	returnArray[1] = returnArray[1]%returnArray[2];
+    	if(returnArray[1]<0) {
+    		returnArray[1] *= -1;	
+    	}
+    	gcf = gcf(returnArray[1], returnArray[2]);
+    	returnArray[1] /= gcf;
+    	returnArray[2] /= gcf;
+
+    	return returnArray;
     }
     // Find the gcf of two numbers (numerator and denominator of the fractional part of the mixed number).
     // from calc. library.
