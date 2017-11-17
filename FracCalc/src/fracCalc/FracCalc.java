@@ -14,9 +14,42 @@ public class FracCalc {
         	System.out.println("Enter fraction string.");
     		input = userInput.nextLine();
     		if (!input.toLowerCase().contains("quit")) {
-    			System.out.println(produceAnswer(input));
+    			if (checkCondition(input).equals("work")) {
+    				System.out.println(produceAnswer(input));
+    			} else {
+    				System.out.println(checkCondition(input));
+    			}
     		}
     	}
+    }
+    public static String checkCondition (String input) {
+        String firstOperand = input.substring(0, input.indexOf(" "));
+        String operator = input.substring((input.indexOf(" ")), (input.indexOf(" ")+ 3)); 
+        String secondOperand = input.substring(input.lastIndexOf(" ") + 1);
+        String result = "work";
+        int firstOperandArray [] = parseOperand(firstOperand);
+        int secondOperandArray [] = parseOperand(secondOperand);
+        if (firstOperandArray [2] != 0 && secondOperandArray [2] != 0) {
+        	if (operator.equals(" + ")) {
+        	} else {
+        		if (operator.equals(" - ")) {
+        		} else {
+        			if (operator.equals(" * ")) {
+        			} else {
+        				if (operator.equals(" / ")) {
+        					if (secondOperandArray[1]==0) {
+        						result = "Error: Cannot divide by zero.";
+        					}
+        				} else {
+        					result ="Error: Input is in an invalid format.";
+        				}
+        			}      		
+        		}
+        	}
+        } else {
+        	return "Error: Cannot divide by zero.";
+        }
+        return result;
     }
     public static String produceAnswer(String input) {//main producer
     	String answer = input;
