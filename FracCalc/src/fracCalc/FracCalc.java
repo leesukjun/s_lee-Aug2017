@@ -24,39 +24,47 @@ public class FracCalc {
     }
     //check if the string is appropriate for the calculation
     public static String checkCondition (String input) {
-        String firstOperand = input.substring(0, input.indexOf(" "));
-        String operator = input.substring((input.indexOf(" ")), (input.indexOf(" ")+ 3)); 
-        String secondOperand = input.substring(input.lastIndexOf(" ") + 1);
+       	int manyspace = 0;
+    	for (int i=0; i<input.length(); i++) {//count how many spaces in the string
+    		if (input.substring(i, i+1).equals(" ")) {
+    			manyspace++;
+    		}
+    	}
         String result = "work";
-        int firstOperandArray [] = parseOperand(firstOperand);
-        int secondOperandArray [] = parseOperand(secondOperand);
-        if (firstOperandArray [2] != 0 && secondOperandArray [2] != 0) {
-        	if (operator.equals(" + ")) {
+    	int i = 1;
+    	while (i < manyspace) {
+    		String operator = input.substring(ordinalIndexOf(input," ",i), ordinalIndexOf(input," ",i+1)+1);
+    		if (operator.equals(" + ")) {
         	} else {
         		if (operator.equals(" - ")) {
         		} else {
         			if (operator.equals(" * ")) {
         			} else {
         				if (operator.equals(" / ")) {
-        					if (secondOperandArray[1]==0) {
-        						result = "Error: Cannot divide by zero.";
-        					}
         				} else {
         					result ="Error: Input is in an invalid format.";
         				}
         			}      		
         		}
         	}
-        } else {
-        	return "Error: Cannot divide by zero.";
+        	i+=2;//increment by two as there is one operator for every two spaces (ex. 1_+_5, _=space)
+        	if (!result.equals("work")) {
+        		i+=manyspace;
+        	}
         }
+    	if (input.contains("/0")&&result.equals("work")) {//if denominator is zero
+			result = "Error: Cannot divide by zero.";
+    	}
+    	if (input.contains("* 0/")) {//if numerator of divisor is zero
+    		result = "Error: Cannot divide by zero.";
+    	}
         return result;
     }
     public static String produceAnswer(String input) {//main producer
     	String answer = input;
     	boolean done = false;
     	while (!done) {
-    		if (answer.contains(" ")) {
+    		if (answer.contains(" ")) {//if the calculation is complete, it will be only have one fraction without any space
     			answer = prepareCalc(answer);
     		} else {
     			done = true;
@@ -117,9 +125,7 @@ public class FracCalc {
         // Create integer arrays for the parts of each operand.
         int firstOperandArray [] = parseOperand(firstOperand);
         int secondOperandArray [] = parseOperand(secondOperand);
-        if (firstOperandArray [2] == 0 || secondOperandArray [2] == 0) {
-        	throw new IllegalArgumentException("Cannot divide by zero.");
-        }
+
         firstOperandArray = toImproperFrac(firstOperandArray[0], firstOperandArray[1], firstOperandArray[2]);
         secondOperandArray = toImproperFrac(secondOperandArray[0], secondOperandArray[1], secondOperandArray[2]);
         
@@ -139,12 +145,7 @@ public class FracCalc {
         			combinedOperandArray = multiplyFrac(firstOperandArray, secondOperandArray);
         		}
         		else {
-        			if (operator.equals(" / ")) {
         				combinedOperandArray = divideFrac( firstOperandArray, secondOperandArray);
-        			}
-        			else {
-        				throw new IllegalArgumentException("Input is in an invalid format.");
-        			}
         		}      		
         	}
         }
@@ -220,9 +221,6 @@ public class FracCalc {
     public static int [] divideFrac(int [] firstOperandArray, int [] secondOperandArray) {
     	// Test if each operand is a mixed number, convert to an improper fraction if it is.
     	// Create an integer array to hold the new values and to return.
-    	if (secondOperandArray[1]==0) {
-    		throw new IllegalArgumentException("Cannot divide by zero.");
-    	}
     	int [] returnArray = new int [3];
     	returnArray[1] = firstOperandArray[1] * secondOperandArray[2];//numerator times denominator
     	returnArray[2] = firstOperandArray[2] * secondOperandArray[1];//denominator times numerator
@@ -250,9 +248,8 @@ public class FracCalc {
     // Find the gcf of two numbers (numerator and denominator of the fractional part of the mixed number).
     // from calc. library.
     public static int gcf(int numerator, int denominator) {
-    	// Set the initial value of gcf to 1 (the lowest possible gcf.
+    	// Set the initial value of gcf to 1 (the lowest possible gcf)
     	int gcf = 1;
-    	// Declare a variable for the amount of times the loop will run.
     	// Set it to whichever number is larger.
 		int count;
     	if (numerator == denominator || numerator > denominator ) {
