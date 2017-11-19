@@ -22,6 +22,7 @@ public class FracCalc {
     		}
     	}
     }
+    //check if the string is appropriate for the calculation
     public static String checkCondition (String input) {
         String firstOperand = input.substring(0, input.indexOf(" "));
         String operator = input.substring((input.indexOf(" ")), (input.indexOf(" ")+ 3)); 
@@ -56,7 +57,7 @@ public class FracCalc {
     	boolean done = false;
     	while (!done) {
     		if (answer.contains(" ")) {
-    			answer = produceAnswerMK1(answer);
+    			answer = prepareCalc(answer);
     		} else {
     			done = true;
     		}
@@ -70,12 +71,16 @@ public class FracCalc {
         	position = str.indexOf(substr, position + 1);
         return position;
     }
-    public static String produceAnswerMK1 (String input) {
+    //cuts the string into two strings (one for calculation and other for rest expression)
+    //The first part will take the first two values with one operator 
+    //The rest will be stored, and once first part is calculated from calculateAnswer, it will be attach together again
+    public static String prepareCalc (String input) {
     	String answer = input;
     	int howMany = 0;
     	String vol1 = "";
     	String vol2 = "";
     	for (int i = 0; i < answer.length()-1; i++) {
+    	//check how many operators there are in the string
     		if (answer.substring(i, i+2).equals("+ ")) {
     			howMany++;
     		} 
@@ -90,17 +95,19 @@ public class FracCalc {
     		} 
     	}
     	if (howMany >= 2) {
+    	//cut the string so that the first string only has two values with one operator
+    	//and the rest part of the string stored in vol2.
     		vol1 = answer.substring(0, ordinalIndexOf(answer," ",3));
     		vol2 = answer.substring(ordinalIndexOf(answer, " ",3));
     	} else {
     		vol1 = input;
     	}
-    	String firstAnswer = produceAnswerMK2(vol1);
+    	String firstAnswer = calculateAnswer(vol1);
     	String newString = firstAnswer + vol2;
     	return newString;
 	}	
-    // Calculate and return the answer to the expression that the user inputs.
-    public static String produceAnswerMK2(String input) {
+    // Calculate and return the answer to the expression that contain two values with one operator
+    public static String calculateAnswer(String input) {
     	
     	// Parse input into firstOperand, operator, and secondOperand.
         String firstOperand = input.substring(0, input.indexOf(" "));
@@ -142,7 +149,7 @@ public class FracCalc {
         	}
         }
         combinedOperandArray=reduceFrac(combinedOperandArray);
-        if (combinedOperandArray[1]==0) {
+        if (combinedOperandArray[1]==0) {//if numerator is zero, the value is whole number
         	return "" + combinedOperandArray[0];
         }
         if (combinedOperandArray[0]==0) {
@@ -185,13 +192,15 @@ public class FracCalc {
     	return returnArray;   	
     }
     // Add two fractions or mixed numbers.
+    // the fraction is not simplified
     public static int [] addFrac(int [] firstOperandArray, int [] secondOperandArray) {
     	int [] returnArray = new int [3];
-    	returnArray [2]= firstOperandArray[2] * secondOperandArray[2];
+    	returnArray [2]= firstOperandArray[2] * secondOperandArray[2];//denominator is multiplication of two denominators
     	returnArray [1]= (firstOperandArray[1] * secondOperandArray[2]) + (secondOperandArray[1] * firstOperandArray[2]);
     	return returnArray;
     }
-    // Subtract two fractions or mixed numbers.
+    // Subtract two fractions
+    // similar to addFrac besides "+" is changed to "-" for line 207
     public static int [] subtractFrac(int [] firstOperandArray, int [] secondOperandArray) {
     	int [] returnArray = new int [3];
     	returnArray [2]= firstOperandArray[2] * secondOperandArray[2];
@@ -203,8 +212,8 @@ public class FracCalc {
     	// Test if each operand is a mixed number, convert to an improper fraction if it is.
     	// Create an integer array to hold the new values and to return.
     	int [] returnArray = new int [3];
-    	returnArray[1] = firstOperandArray[1] * secondOperandArray[1];
-    	returnArray[2] = firstOperandArray[2] * secondOperandArray[2];
+    	returnArray[1] = firstOperandArray[1] * secondOperandArray[1];//numerator times numerator
+    	returnArray[2] = firstOperandArray[2] * secondOperandArray[2];//denominator times denominator
     	return returnArray;
     }
     // Divide two fractions or mixed numbers.
@@ -215,11 +224,12 @@ public class FracCalc {
     		throw new IllegalArgumentException("Cannot divide by zero.");
     	}
     	int [] returnArray = new int [3];
-    	returnArray[1] = firstOperandArray[1] * secondOperandArray[2];
-    	returnArray[2] = firstOperandArray[2] * secondOperandArray[1];
+    	returnArray[1] = firstOperandArray[1] * secondOperandArray[2];//numerator times denominator
+    	returnArray[2] = firstOperandArray[2] * secondOperandArray[1];//denominator times numerator
     	return returnArray;
     }
-    public static int [] reduceFrac(int [] combinedOperandArray) {//needs to be fixed
+    //simplifies the fraction
+    public static int [] reduceFrac(int [] combinedOperandArray) {
     	int gcf;
     	int returnArray[]= combinedOperandArray;
     	returnArray = toImproperFrac(returnArray[0], returnArray[1], returnArray[2]);
@@ -227,12 +237,12 @@ public class FracCalc {
     		returnArray[2] *= -1;
     		returnArray[1] *= -1;
     	}	
-    	returnArray[0] += returnArray[1]/returnArray[2];
+    	returnArray[0] += returnArray[1]/returnArray[2];//convert improper to whole
     	returnArray[1] = returnArray[1]%returnArray[2];
     	if(returnArray[0]!=0 && returnArray[1]<0) {
     		returnArray[1] *= -1;	
     	}
-    	gcf = gcf(returnArray[1], returnArray[2]);
+    	gcf = gcf(returnArray[1], returnArray[2]);//calculate GCF to simplify the fraction
     	returnArray[1] /= gcf;
     	returnArray[2] /= gcf;
     	return returnArray;
