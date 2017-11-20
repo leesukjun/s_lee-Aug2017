@@ -22,6 +22,13 @@ public class FracCalc {
     		}
     	}
     }
+    //method that detects the index of the nth occurring character 
+    public static int ordinalIndexOf(String str, String substr, int n) {
+        int position = str.indexOf(substr);
+        while (--n > 0 && position != -1)
+        	position = str.indexOf(substr, position + 1);
+        return position;
+    }
     //check if the string is appropriate for the calculation
     public static String checkCondition (String input) {
        	int manyspace = 0;
@@ -31,6 +38,9 @@ public class FracCalc {
     		}
     	}
         String result = "work";
+    	if (manyspace%2==1) {//if there is odd number of spaces, it is not appropriate for the calculation
+    		result ="Error: Input is in an invalid format.";
+    	}
     	int i = 1;
     	while (i < manyspace) {
     		String operator = input.substring(ordinalIndexOf(input," ",i), ordinalIndexOf(input," ",i+1)+1);
@@ -71,13 +81,6 @@ public class FracCalc {
     		}
     	}
     	return answer;
-    }
-    //method that detects the index of the nth occurring character 
-    public static int ordinalIndexOf(String str, String substr, int n) {
-        int position = str.indexOf(substr);
-        while (--n > 0 && position != -1)
-        	position = str.indexOf(substr, position + 1);
-        return position;
     }
     //cuts the string into two strings (one for calculation and other for rest expression)
     //The first part will take the first two values with one operator 
