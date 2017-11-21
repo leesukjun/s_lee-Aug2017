@@ -70,6 +70,7 @@ public class FracCalc {
     	}
         return result;
     }
+    //there are more two sequential methods: one that prepare for calc and one that does calculation
     public static String produceAnswer(String input) {//main producer
     	String answer = input;
     	boolean done = false;
@@ -118,6 +119,7 @@ public class FracCalc {
     	return newString;
 	}	
     // Calculate and return the answer to the expression that contain two values with one operator
+    // used to be produceAnswer, but changed for Extra Credit part.
     public static String calculateAnswer(String input) {
     	
     	// Parse input into firstOperand, operator, and secondOperand.
