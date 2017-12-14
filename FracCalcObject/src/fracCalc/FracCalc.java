@@ -29,14 +29,11 @@ public class FracCalc {
 			if (parsedInput.length % 2 == 0 || parsedInput.length == 1) {
 				return "ERROR: Invalid equation. Please try again.";
 			}
-			String result = "";
-			for (int i = 2; i < parsedInput.length; i += 2) {
-				Fraction operand1 = new Fraction(parsedInput[0]);
-				Fraction operand2 = new Fraction(parsedInput[i]);
-				String operator = parsedInput[i-1];
-				Fraction answer = operand1.calculation(operand2, operator);
-				result = answer.toString();
-			}
+			Fraction operand1 = new Fraction(parsedInput[0]);
+			Fraction operand2 = new Fraction(parsedInput[2]);
+			String operator = parsedInput[1];
+			Fraction answer = operand1.calculation(operand2, operator);
+			String result = answer.toString();
 			return result;
 		}
 	}
