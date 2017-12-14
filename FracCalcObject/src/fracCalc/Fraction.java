@@ -83,16 +83,18 @@ public class Fraction {
 		this.whole = 0;
 	}
 	private void simplyFrac() {
-		boolean negative;
-		if (numerator < 0) {
-			negative = true;
-			numerator *=-1;
+		if (denominator<0) {
+			denominator *= -1;
+			numerator *= -1;
 		}
 		whole = numerator/denominator;
 		numerator = numerator%denominator;
-		if (negative=true) {
-			whole *= -1;
+		if (numerator<0 && whole!=0) {
+			numerator *= -1;
 		}
+		int gcf = gcf(numerator, denominator);
+		numerator /= gcf;
+		denominator /= gcf;
     }
 	public String toString() {
 		if (this.numerator==0) {
@@ -107,14 +109,14 @@ public class Fraction {
     	int gcf = 1;
 		int count;
     	if (numerator == denominator || numerator > denominator ) {
-    		count = numerator;
-    	} else {
     		count = denominator;
+    	} else {
+    		count = numerator;
     	}
     	if (count<0) {
     		count *= -1;
     	}
-		for(int i = 1; i <= count; i++) {
+		for(int i = 2; i <= count; i++) {
 			if(numerator % i == 0 && denominator % i == 0) {
 				gcf = i;
 			}
