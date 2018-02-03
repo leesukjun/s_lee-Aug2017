@@ -8,12 +8,13 @@ import java.util.Scanner;
 public class Hello_world {
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to the Quadratic Describer \nProvide values for coefficients a, b, and c");
-		Scanner userInput = new Scanner(System.in);
-		double a = userInput.nextDouble();
-		userInput.nextLine();
-		String answer = userInput.nextLine();
-		String answer2 = answer.replaceAll("\\s","");
-		System.out.println (answer2 + a);
+		int a = 15;
+		int [] arg = {0, 1, 2, 3};
+		change(a, arg);
+		System.out.println(a + "	" + arg[2]);
+	}
+	public static void change(int am, int [] inm) {
+		am = 5;
+		inm[2]=0;
 	}
 }

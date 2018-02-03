@@ -12,10 +12,10 @@ public class FracCalc {
 	        	System.out.println("Enter fraction string.");
 	    		input = userInput.nextLine();
 	    		if (!input.toLowerCase().contains("quit")) {
-	    				System.out.println(produceAnswer(input));
-	    			}
+	    			System.out.println(produceAnswer(input));
 	    		}
 	    	}
+	    }
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
     // This function takes a String 'input' and produces the result
     //
