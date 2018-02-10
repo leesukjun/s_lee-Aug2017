@@ -10,10 +10,24 @@
  */
 
 
-public class TriangularPrism 
+public class TriangularPrism extends Prism
 {
+	private double sideA;
+	private double sideB;
+	private double sideC;
 	
-	
-	
-	
+	public TriangularPrism(double a, double b, double c, double height) {
+		super(height);
+		sideA = a;
+		sideB = b;
+		sideC = c;
+		perimeter = sideA + sideB + sideC;
+		base = baseTriangle(sideA, sideB, sideC);
+	}
+	private static double baseTriangle(double a, double b, double c) {
+		double s = (a+b+c)/2;
+		double answer = s*(s-a)*(s-b)*(s-c);
+		answer=Math.sqrt(answer);
+		return answer;
+	}
 }

@@ -4,10 +4,14 @@
  * Provide a constructor and the methods required by its abstract superclass.  
  */
 
-public class Cylinder 
+public class Cylinder extends Prism
 {
+	private double radius;
 	
-	
-	
-	
+	public Cylinder(double radius, double height) {
+		super(height);
+		this.radius = radius;
+		perimeter = 2 * 3.141592 * radius;
+		base = 3.141592 * radius * radius;
+	}
 }
