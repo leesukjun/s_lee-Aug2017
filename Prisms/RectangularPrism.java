@@ -11,10 +11,14 @@ public class RectangularPrism extends Prism
 	
 	public RectangularPrism(double length, double width, double height) {
 		super(height);
-		perimeter = (length + width) * 2;
-		base = length * width;
 		this.length = length;
 		this.width = width;
+	}
+	public double calcAreaOfBase() {
+		return length * width;
+	}
+	public double calcPerimeter() {
+		return (length + width) * 2;
 	}
 }
 

@@ -11,7 +11,11 @@ public class Cylinder extends Prism
 	public Cylinder(double radius, double height) {
 		super(height);
 		this.radius = radius;
-		perimeter = 2 * 3.141592 * radius;
-		base = 3.141592 * radius * radius;
+	}
+	public double calcAreaOfBase() {
+		return 3.141592 * radius * radius;
+	}
+	public double calcPerimeter() {
+		return 2 * 3.141592 * radius;
 	}
 }

@@ -21,13 +21,14 @@ public class TriangularPrism extends Prism
 		sideA = a;
 		sideB = b;
 		sideC = c;
-		perimeter = sideA + sideB + sideC;
-		base = baseTriangle(sideA, sideB, sideC);
 	}
-	private static double baseTriangle(double a, double b, double c) {
-		double s = (a+b+c)/2;
-		double answer = s*(s-a)*(s-b)*(s-c);
+	public double calcAreaOfBase() {
+		double s = (sideA+sideB+sideC)/2;
+		double answer = s*(s-sideA)*(s-sideB)*(s-sideC);
 		answer=Math.sqrt(answer);
 		return answer;
+	}
+	public double calcPerimeter() {
+		return sideA + sideB + sideC;
 	}
 }
