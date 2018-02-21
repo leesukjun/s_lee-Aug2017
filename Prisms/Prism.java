@@ -12,9 +12,9 @@
 
 public abstract class Prism  
 {
-	protected double height;
-	protected double perimeter;
-	protected double base;
+	private double height;
+	private double perimeter;
+	private double base;
 	
 	public Prism(double height) {
 		this.height = height;
