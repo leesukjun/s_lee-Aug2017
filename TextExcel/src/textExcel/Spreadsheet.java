@@ -19,42 +19,27 @@ public class Spreadsheet implements Grid
 	public String processCommand(String command)	{
 		int row, column;
 		String returnString = "";
-		if (command.equals("quit")) {
-			returnString = "quit";
-		} else {
-			if(command.equals("")) {//Returns nothing if the command is blank
-				returnString = "";
-			} else {
-				if (command.length() <= 3 && command.length() != 0) {//Returns the non-truncated contents of a specified cell (cell inspection)
-					column = Character.getNumericValue(command.charAt(0)) - 9;
-					row = Integer.valueOf((command.substring(1))) ;
-					
-					returnString = spreadsheet[row][column].fullCellText();
-				} else {
-					if (command.contains("=")) {//'=' means there is an assignment
-						String [] splitInput = command.split(" ", 3);
-						SpreadsheetLocation location = new SpreadsheetLocation(splitInput[0]);
-					} else {
-						
-					}
-				}
-			}
+		if (command.contains("=")){
+			String[] data = command.split(" ", 3);
+			SpreadsheetLocation location = new SpreadsheetLocation(data[0]);
+			spreadsheet [location.getCol()][location.getRow()]= new TextCell(data[2]);
+			return getGridText();
 		}
-		if(command.toLowerCase().contains("clear ")) {
-			String [] splitInput2 = command.split(" ", 2);
-			SpreadsheetLocation location = new SpreadsheetLocation(splitInput2[1]);
-			spreadsheet[location.getRow() + 1][location.getCol() + 1] = new EmptyCell();
-			returnString = this.getGridText();	
-		} else {
-			if(command.toLowerCase().equals("clear")) {
-				Cell [][] clearedSpreadsheet = new Cell[21][13];
-				for(int i = 1; i < 21; i++) {
-					for(int j = 1; j < 13; j++) {
-						clearedSpreadsheet [i][j] = new EmptyCell();
+		if (command.length() <= 3 && command.length() != 0) {
+			SpreadsheetLocation location = new SpreadsheetLocation(command);
+			return spreadsheet [location.getCol()][location.getRow()].fullCellText();
+		}
+		if (command.toLowerCase().equals("clear ")) {
+			String [] data = command.split(" ", 2);
+			SpreadsheetLocation location = new SpreadsheetLocation(data[1]);
+			spreadsheet [location.getCol()][location.getRow()]= new EmptyCell();
+		} else { 
+			if (command.toLowerCase().equals("clear")) {
+				for(int i = 0; i < 21; i++) {
+					for(int j = 0; j < 13; j++) {
+						spreadsheet [i][j] = new EmptyCell();
 					}
 				}
-				spreadsheet = clearedSpreadsheet;
-				returnString = this.getGridText();
 			}
 		}
 		return returnString;
