@@ -59,6 +59,9 @@ public class Spreadsheet implements Grid
 				}
 			}
 		}
+		if (command.equals("")) {
+			return "";
+		}
 		return getGridText();
 	}
 
