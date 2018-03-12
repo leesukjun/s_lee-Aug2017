@@ -22,17 +22,34 @@ public class Spreadsheet implements Grid
 		if (command.contains("=")){
 			String[] data = command.split(" ", 3);
 			SpreadsheetLocation location = new SpreadsheetLocation(data[0]);
-			spreadsheet [location.getCol()][location.getRow()]= new TextCell(data[2]);
+			if (isNumeric(data[2])) {
+				ValueCell valueCell = new ValueCell(data[2]);
+				spreadsheet[location.getRow() + 1][location.getCol() + 1] = valueCell;	
+				return getGridText();
+			}
+			if (data[2].contains("%")) {
+				PercentCell percentCell = new PercentCell(data[2]);
+				spreadsheet[location.getRow() + 1][location.getCol() + 1] = percentCell;	
+				return getGridText();
+			}
+			if(!data[2].substring(0,1).equals("\"") && (command.contains("+") || command.contains("-") || command.contains("*") || command.contains("/"))) {
+				FormulaCell formulaCell = new FormulaCell(data[2]);
+				spreadsheet[location.getRow() + 1][location.getCol() + 1] = formulaCell;
+				return getGridText();
+			}
+			String [] contentsWithoutQuotes = data[2].split("\"", 3);
+			TextCell text = new TextCell(contentsWithoutQuotes[1]);
+			spreadsheet [location.getRow()+1][location.getCol()+1]= text;
 			return getGridText();
 		}
 		if (command.length() <= 3 && command.length() != 0) {
 			SpreadsheetLocation location = new SpreadsheetLocation(command);
-			return spreadsheet [location.getCol()][location.getRow()].fullCellText();
+			return spreadsheet [location.getRow()+1][location.getCol()+1].fullCellText();
 		}
-		if (command.toLowerCase().equals("clear ")) {
-			String [] data = command.split(" ", 2);
-			SpreadsheetLocation location = new SpreadsheetLocation(data[1]);
-			spreadsheet [location.getCol()][location.getRow()]= new EmptyCell();
+		if (command.toLowerCase().contains("clear ")) {
+			String [] splitInput2 = command.split(" ", 2);
+			SpreadsheetLocation location = new SpreadsheetLocation(splitInput2[1]);
+			spreadsheet[location.getRow() + 1][location.getCol() + 1] = new EmptyCell();
 		} else { 
 			if (command.toLowerCase().equals("clear")) {
 				for(int i = 0; i < 21; i++) {
@@ -42,7 +59,7 @@ public class Spreadsheet implements Grid
 				}
 			}
 		}
-		return returnString;
+		return getGridText();
 	}
 
 	//Returns the number of rows in the spreadsheet
@@ -60,16 +77,17 @@ public class Spreadsheet implements Grid
 		return spreadsheet[loc.getRow() + 1][loc.getCol() + 1];
 	}
 
+	//Returns the entire spreadsheet
 	public String getGridText() {
 		String grid = "";
 		char colCount = 'A';
+		
 		for(int row = 0; row < 21; row++) {
 			for(int col = 0; col < 13; col++) {
 				if(row == 0) {
 					if(col == 0) {
 						grid += "   |";
-					}
-					else {
+					} else {
 						grid += "" + colCount + "         |";
 						colCount++;	
 					}
@@ -78,24 +96,41 @@ public class Spreadsheet implements Grid
 					if (col == 0) {
 						if(row < 10) {
 							grid += "" + row + "  |";
-						}
-						else {
+						} else {
 							grid += "" + row + " |";
-						}		
-					}
-					else {
+						}
+					} else {
 						String test = spreadsheet[row][col].abbreviatedCellText();
 						if(test.equals("")){
 							grid += "          |";
-						}
-						else{
+						} else {
 							grid += test + "|";
 						}
 					}
+				
 				}
-			}
+			}	
 		grid += "\n";
 		}
 	return grid;
+	}
+	public boolean isNumeric(String input) {
+		String testString;
+		boolean returnValue = true;
+		if(input.charAt(0) == '-') {			
+			testString = input.substring(1);			
+		}
+		else {
+			testString = input;	
+		}
+	
+		for(int i = 0; i < testString.length(); i ++) {
+			if(testString.charAt(i) != '.') {
+				if(!Character.isDigit(testString.charAt(i))) {
+					return !returnValue;
+				}
+			}
+		}
+			return returnValue;
 	}
 }
