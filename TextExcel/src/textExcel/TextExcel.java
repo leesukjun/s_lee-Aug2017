@@ -9,12 +9,11 @@ import java.io.*;
 
 public class TextExcel {
 	public static void main(String[] args) {
-		Grid grid = new Spreadsheet();
-		String gridOne = grid.processCommand("A1 = \"oNe\"");
-		String accessorOne = grid.getGridText();
-		String gridTwo = grid.processCommand("L20 = \"TWo\"");
-		String gridOnlyTwo = grid.processCommand("clear A1");
-		System.out.println(grid.getGridText());
+		String command = "F2 = ( 1 )";
+		String[] data = command.split(" ", 3);
+		System.out.println(data[2]);
+		System.out.println(data[2].substring(0,1).equals("("));
+		
 	    Spreadsheet Mainspreadsheet = new Spreadsheet();
 	    Scanner userInput  = new Scanner (System.in);
 	    String input = "";
