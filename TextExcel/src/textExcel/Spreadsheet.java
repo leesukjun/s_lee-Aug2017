@@ -72,23 +72,26 @@ public class Spreadsheet implements Grid
 			String[] data = command.split(" ", 2)[1].split("-");
 			SpreadsheetLocation starter = new SpreadsheetLocation(data[0]);
 			SpreadsheetLocation ender = new SpreadsheetLocation(data[1]);
-			String start = data[0].substring(0,1); 
 			ArrayList <String> sorting = new ArrayList<String>();
 			for (int i = starter.getRow() ; i <= ender.getRow() ; i++) {
 				for (int j = starter.getCol() ; j <=ender.getCol(); j++) {
-					sorting.add(spreadsheet[i][j].abbreviatedCellText());
+					sorting.add(spreadsheet[i+1][j+1].abbreviatedCellText());
 				}
-			}
+			}//up to here works fine
 			int count2;
 			for (count2=0; count2 < sorting.size() ; count2++) {
-				//alphabetize here
-				//not complete
+				for (int count3=0; count3 < sorting.size() ; count3++) {
+					if (Character.getNumericValue(sorting.get(count2).charAt(0)) < Character.getNumericValue(sorting.get(count3).charAt(0))) {
+						String backup = sorting.get(count2);
+						sorting.set(count2, sorting.get(count3));
+						sorting.set(count3, backup);
+					}
+				}
 			}
-			Collections.sort(sorting, String.CASE_INSENSITIVE_ORDER);
 			int count = 0;
 			for (int i = starter.getRow() ; i <= ender.getRow() ; i++) {
 				for (int j = starter.getCol() ; j <=ender.getCol(); j++) {
-					spreadsheet[i][j] = new TextCell(sorting.get(count));
+					spreadsheet[i+1][j+1] = new TextCell(sorting.get(count));
 					count++;
 				}
 			}
