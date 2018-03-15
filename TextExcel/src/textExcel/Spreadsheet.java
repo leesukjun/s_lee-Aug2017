@@ -41,12 +41,12 @@ public class Spreadsheet implements Grid
 						return getGridText();
 					} else {//needs to be fixed
 						System.out.println(data[2]);
-						String [] contentsWithoutQuotes = data[2].split("\"");
-						String contentwo = data[2].replaceAll("\"", "");
-						System.out.println(contentwo.substring(1,contentwo.length()-1));
-						TextCell text = new TextCell(contentwo);
-						spreadsheet [location.getRow()+1][location.getCol()+1]= text;
-						return getGridText();
+						//If none of the other tests pass, a text cell is made
+						//Create a new array to split, in order to get rid of the quotation marks.
+						String [] contentsWithoutQuotes = data[2].split("\\\"", 3);
+						System.out.println(contentsWithoutQuotes[1]);
+						TextCell cell = new TextCell(contentsWithoutQuotes[1]);
+						spreadsheet[location.getRow() + 1][location.getCol() + 1] = cell;
 					}
 				}
 			}
@@ -94,6 +94,16 @@ public class Spreadsheet implements Grid
 						String backup = sorting.get(count2);//changed the > sign above for sortd
 						sorting.set(count2, sorting.get(count3));
 						sorting.set(count3, backup);
+					} else {
+						int count = 0;
+						while (Character.getNumericValue(sorting.get(count2).charAt(count)) == Character.getNumericValue(sorting.get(count3).charAt(count))) {
+							count ++;
+						}
+						if (Character.getNumericValue(sorting.get(count2).charAt(count)) > Character.getNumericValue(sorting.get(count3).charAt(count))) {
+							String backup = sorting.get(count2);//changed the > sign above for sortd
+							sorting.set(count2, sorting.get(count3));
+							sorting.set(count3, backup);
+						}
 					}
 				}
 			}
@@ -112,7 +122,54 @@ public class Spreadsheet implements Grid
 			}
 		}
 		if (command.contains("sortd")){
-			//copy the sorta and modify it.
+			String[] data = command.split(" ", 2)[1].split("-");
+			SpreadsheetLocation starter = new SpreadsheetLocation(data[0]);
+			SpreadsheetLocation ender = new SpreadsheetLocation(data[1]);
+			ArrayList <String> sorting = new ArrayList<String>();
+			for (int i = starter.getRow() ; i <= ender.getRow() ; i++) {
+				for (int j = starter.getCol() ; j <=ender.getCol(); j++) {
+					sorting.add(spreadsheet[i+1][j+1].abbreviatedCellText());
+				}
+			}
+			//String print = "";
+			//for (String ele : sorting) {
+			//	print += " "+ele;
+			//}
+			//System.out.println(print);
+			//up to here works fine
+			int count2;
+			for (count2=0; count2 < sorting.size() ; count2++) {
+				for (int count3=count2+1; count3 < sorting.size() ; count3++) {
+					if (Character.getNumericValue(sorting.get(count2).charAt(0)) < Character.getNumericValue(sorting.get(count3).charAt(0))) {
+						String backup = sorting.get(count2);//changed the > sign above for sortd
+						sorting.set(count2, sorting.get(count3));
+						sorting.set(count3, backup);
+					} else {
+						int count = 0;
+						while (Character.getNumericValue(sorting.get(count2).charAt(count)) == Character.getNumericValue(sorting.get(count3).charAt(count))) {
+							count ++;
+						}
+						if (Character.getNumericValue(sorting.get(count2).charAt(count)) < Character.getNumericValue(sorting.get(count3).charAt(count))) {
+							String backup = sorting.get(count2);//changed the > sign above for sortd
+							sorting.set(count2, sorting.get(count3));
+							sorting.set(count3, backup);
+						}
+					}
+				}
+			}
+			//for (String ele : sorting) {
+			//	print += " "+ele;
+			//}
+			//System.out.println(""+sorting.size() + print);
+			//print test of arraylist
+			
+			int count = 0;
+			for (int i = starter.getRow() ; i <= ender.getRow() ; i++) {
+				for (int j = starter.getCol() ; j <=ender.getCol(); j++) {
+					spreadsheet[i+1][j+1] = new TextCell(sorting.get(count));
+					count++;
+				}
+			}
 		}
 		return getGridText();
 	}
