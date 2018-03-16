@@ -9,10 +9,14 @@ public class TextCell implements Cell {
 	
 	public String abbreviatedCellText() {
 		String newCellContents = cellContents;
-		if(cellContents.length() > 10) {
+		if (cellContents.contains("\"")){
+			newCellContents = cellContents.substring(1, cellContents.length()-1);
+		}
+		int count = newCellContents.length();
+		if(count> 10) {
 			return(cellContents.substring(0, 10));
 		} else {
-			for(int i = 0; i < 10 - cellContents.length(); i++) {
+			for(int i = 0; i < 10 - count; i++) {
 				newCellContents += " ";
 			}
 			return newCellContents;
@@ -21,7 +25,7 @@ public class TextCell implements Cell {
 
 	public String fullCellText() {
 		String newCellContents = "\"" + cellContents + "\"";
-		return newCellContents;
+		return cellContents;
 	}
 	
 	public void setContents(String newContents){

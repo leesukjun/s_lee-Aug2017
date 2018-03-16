@@ -40,12 +40,7 @@ public class Spreadsheet implements Grid
 						spreadsheet[location.getRow() + 1][location.getCol() + 1] = formulaCell;
 						return getGridText();
 					} else {//needs to be fixed
-						System.out.println(data[2]);
-						//If none of the other tests pass, a text cell is made
-						//Create a new array to split, in order to get rid of the quotation marks.
-						String [] contentsWithoutQuotes = data[2].split("\\\"", 3);
-						System.out.println(contentsWithoutQuotes[1]);
-						TextCell cell = new TextCell(contentsWithoutQuotes[1]);
+						TextCell cell = new TextCell(data[2]);
 						spreadsheet[location.getRow() + 1][location.getCol() + 1] = cell;
 					}
 				}
