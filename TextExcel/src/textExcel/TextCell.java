@@ -14,7 +14,7 @@ public class TextCell implements Cell {
 		}
 		int count = newCellContents.length();
 		if(count> 10) {
-			return(cellContents.substring(0, 10));
+			return(newCellContents.substring(0, 10));
 		} else {
 			for(int i = 0; i < 10 - count; i++) {
 				newCellContents += " ";

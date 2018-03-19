@@ -41,6 +41,7 @@ public class Spreadsheet implements Grid
 						return getGridText();
 					} else {//needs to be fixed
 						TextCell cell = new TextCell(data[2]);
+						System.out.println(data[2] + " hello");
 						spreadsheet[location.getRow() + 1][location.getCol() + 1] = cell;
 					}
 				}
@@ -73,7 +74,7 @@ public class Spreadsheet implements Grid
 			ArrayList <String> sorting = new ArrayList<String>();
 			for (int i = starter.getRow() ; i <= ender.getRow() ; i++) {
 				for (int j = starter.getCol() ; j <=ender.getCol(); j++) {
-					sorting.add(spreadsheet[i+1][j+1].abbreviatedCellText());
+					sorting.add(spreadsheet[i+1][j+1].fullCellText());
 				}
 			}
 			//String print = "";
