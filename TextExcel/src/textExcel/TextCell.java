@@ -1,6 +1,6 @@
 package textExcel;
 
-public class TextCell implements Cell {
+public class TextCell implements Cell, Comparable {
 	private String cellContents;
 
 	public TextCell(String contents) {
@@ -30,5 +30,11 @@ public class TextCell implements Cell {
 	
 	public void setContents(String newContents){
 		cellContents = newContents;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

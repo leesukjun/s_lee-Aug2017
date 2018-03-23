@@ -1,6 +1,6 @@
 package textExcel;
 
-public class RealCell implements Cell {
+public class RealCell implements Cell, Comparable{
 
 	private String data;
 	
@@ -36,5 +36,10 @@ public class RealCell implements Cell {
 	//Returns the line of user input that was used to make the cell
 	public String getUserInput() {
 		return data;
+	}
+	@Override
+	public int compareTo(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
