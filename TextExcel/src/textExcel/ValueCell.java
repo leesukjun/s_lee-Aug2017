@@ -10,14 +10,14 @@ public class ValueCell extends RealCell {
 	public String abbreviatedCellText() {
 		double doubleValue = this.getDoubleValue();
 		String value = "" + doubleValue;
-		String copyOfValue = value;
+		String newValue = value;
 		if(value.length() > 10) {
 			return(value.substring(0, 10));
 		} else {
 			for(int i = 0; i < 10 - value.length(); i++) {
-				copyOfValue += " ";
+				newValue += " ";
 			}
 		}
-		return copyOfValue;
+		return newValue;
 	}
 }
